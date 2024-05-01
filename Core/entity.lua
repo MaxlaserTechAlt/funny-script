@@ -63,8 +63,8 @@ do
         end
         return plrs
     end,
-    entity.antiLogs = function()
-        local req: string
+    local req: string
+    entity.antiLogs = function(): number
         req = hookfunction(request, newcclosure(function(link)
             if link.Url:gsub("discord", "webhooks") then
                 print("[⚠] AntiLogger - Someone tryna log you with the webhooks")
@@ -82,6 +82,7 @@ do
             hookfunction(v, function(...)
                 return (...)
             end)
+            req = nil
         end
     end
 end
