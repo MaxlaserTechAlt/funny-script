@@ -11,9 +11,25 @@ local githubRequest = function(url)
     return readfile('funny/'.. url)
 end
 local cloneref = cloneref or function(obj) return obj end
-local kavo = loadstring(githubRequest("core/gui.lua"))()
+local kavo = loadstring(githubRequest('core/gui.lua'))()
+local entity = loadstring(githubRequest('core/entityFunction.lua'))()
+shared.kavoentity = entity
 shared.kavo = kavo
 getgenv().funnyInjected = true
+local gamelist = {
+    bedwars = {
+        Name = "bedwars.lua",
+        placeId = 69420,
+    },
+    papereducation = {
+        Name = "papereducation.lua",
+        placeId = 16812449989
+    },
+    solsrng = {
+        Name = "solsrng",
+        placeId = 15532962292
+    }
+}
 local win = kavo:CreateWindow({
     Title = "Funny v1.0",
     Theme = 'Luna'
@@ -32,10 +48,10 @@ local newgame = function(gameName)
 end
 shared.guiTab = tabs
 
-if game.PlaceId == 4483381587 then
-    newgame('baseplate')
-    loadfile('funny/games/baseplate.lua')()
-else
-    writefile('funny/universal.lua', githubRequest('universal.lua'))
-    loadfile('funny/universal.lua')()
+for i,v in gamelist do
+    if game.PlaceId == v.placeId then
+        loadstring(githubRequest(v.Name))()
+    else
+        loadstring(githubRequest('universal.lua'))()
+    end
 end
