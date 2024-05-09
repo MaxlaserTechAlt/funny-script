@@ -21,7 +21,7 @@ run(function()
     local SpeedMode = {}
     local Speedfunction = {
         TP = function()
-            return (lplr.Character.HumanoidRootPart.CFrame + CFrame.new(SpeedValue.Value,0,0))
+            return (lplr.Character.HumanoidRootPart.CFrame += CFrame.new(SpeedValue.Value,0,0))
         end,
         WalkSpeed = function()
             return lplr.Character.Humanoid.WalkSpeed = SpeedValue.Value
