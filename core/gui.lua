@@ -140,7 +140,7 @@
 			ElementColor = Color3.fromRGB(22, 29, 31)
 		}
 	}
-  shared.kavothemes = themes
+  shared.kavothemes = themeStyles
 	local oldTheme = ""
 
 	local SettingsT = {
@@ -382,7 +382,7 @@
 				coverup.BackgroundColor3 = themeList.Header
 			end
 		end)()
-
+		print("kavo by monia :D")
 		function kavo:ChangeColor(prope,color)
 			if prope == "Background" then
 				themeList.Background = color
@@ -1009,8 +1009,7 @@
 
 				function Elements.CreateToggle(argstable)
 					local toggleapi = {
-						["Enabled"] = false,
-						["Connections"] = {}
+						["Enabled"] = false
 					}
 					local tname = argstable["Name"] or 'Toggle'
 					local nTip = argstable["HoverText"] or ""
@@ -1158,10 +1157,6 @@
 								end
 								c:Destroy()
 							else
-								for i,v in toggleapi["Connections"] do
-									if v.Disconnect then pcall(function() v:Disconnect() end) continue end
-									if v.disconnect then pcall(function() v:disconnect() end) continue end
-								end
 								game.TweenService:Create(img, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
 									ImageTransparency = 1
 								}):Play()
