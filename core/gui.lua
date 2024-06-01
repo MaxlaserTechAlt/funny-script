@@ -1009,7 +1009,8 @@
 
 				function Elements.CreateToggle(argstable)
 					local toggleapi = {
-						["Enabled"] = false
+						["Enabled"] = false,
+						["Connections"] = {}
 					}
 					local tname = argstable["Name"] or 'Toggle'
 					local nTip = argstable["HoverText"] or ""
@@ -1157,6 +1158,10 @@
 								end
 								c:Destroy()
 							else
+								for i,v in toggleapi["Connections"] do
+									if v.Disconnect then pcall(function() v:Disconnect() end) continue end
+									if v.disconnect then pcall(function() v:disconnect() end) continue end
+								end
 								game.TweenService:Create(img, TweenInfo.new(0.11, Enum.EasingStyle.Linear,Enum.EasingDirection.In), {
 									ImageTransparency = 1
 								}):Play()
